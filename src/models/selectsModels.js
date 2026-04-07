@@ -8,9 +8,9 @@ async function buscarPorTopico(id) {
 }
 
 // SELECT 2 → palavra "ocorre"
-async function buscarOcorrencia() {
-  const sql = `SELECT enunciado, resposta FROM questoes WHERE enunciado ILIKE '%ocorre%'`;
-  const result = await pool.query(sql);
+async function buscarOcorrencia(palavra) {
+  const sql = `SELECT enunciado, resposta FROM questoes WHERE enunciado ILIKE $1`;
+  const result = await pool.query(sql, [`%${palavra}%`]);
   return result.rows;
 }
 

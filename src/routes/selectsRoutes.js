@@ -7,6 +7,6 @@ const selectControllers = require("../controllers/selectsControllers");
 router.get("/select/topico/:id", selectControllers.buscarPorTopico);
 
 // SELECT 2
-router.get("/select/ocorre", selectControllers.buscarOcorrencia);
+router.get("/select/ocorre/:palavra", selectControllers.buscarOcorrencia);
 
 module.exports = router;

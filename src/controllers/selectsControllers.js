@@ -22,8 +22,14 @@ async function buscarPorTopico(req, res) {
 // SELECT 2
 async function buscarOcorrencia(req, res) {
   try {
-    const resultado = await selectModels.buscarOcorrencia();
-    res.status(200).json(resultado);
+    const palavra = req.params.palavra;
+    const resultado = await selectModels.buscarOcorrencia(palavra);
+
+    if (resultado.length > 0) {
+      return res.status(200).json(resultado);
+    } else {
+      res.status(404).json({ mensagem: "palavra não encontrada" });
+    }
   } catch (erro) {
     res.status(500).json({
       mensagem: "Erro na busca",
